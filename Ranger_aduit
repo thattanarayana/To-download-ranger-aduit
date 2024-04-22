@@ -1,0 +1,10 @@
+  hdfs dfs -ls /ranger/audit/hive/hiveServer2/
+  hdfs dfs -ls /ranger/audit/impala/impala/
+  hdfs dfs -cat /ranger/audit/hive/hiveServer2/20231128 >> /tmp/file.txt
+  hdfs dfs -cat /ranger/audit/impala/impala/<DATE> >> /tmp/file.txt
+  cat /home/new_file_1.txt | egrep -i sc_p_md_core | jq .reqUser >> /home/new_file.txt
+  for date in 20231001 20231102 20231203 20240101 20240111 20240131 20240201 20240206; do
+      hdfs dfs -ls /ranger/audit/impala/impala/$date/* | awk '{print $8}' | while read file; do
+          hdfs dfs -cat "$file" >> /tmp/file.txt
+      done
+  done
